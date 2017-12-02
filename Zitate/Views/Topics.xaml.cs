@@ -60,7 +60,7 @@ namespace Zitate
                 // Tag Items
                 if (refresh || !SuspensionManager.SessionState.ContainsKey("TopicsItems"))
                 {
-                    ViewModelTopics.loadData(searchValue, "tag");
+                    ViewModelTopics.loadData(searchValue, "topic");
                     SuspensionManager.SessionState["TopicsItems"] = ViewModelTopics.TopicItems;
                 }
                 selectedTopic = ViewModelTopics.SearchedTopic;

@@ -15,7 +15,7 @@ namespace Zitate.ViewModel
         public ObservableCollection<ZModelItem> TopicItems { get; set; }
         public ObservableCollection<ZModelTopic> PopularTopics { get; set; }
          
-        public async void loadData(string searchValue = "0", string view = "tags")
+        public async void loadData(string searchValue = "0", string view = "topics")
         {
             TopicItems = new ObservableCollection<ZModelItem>();
             PopularTopics = new ObservableCollection<ZModelTopic>();

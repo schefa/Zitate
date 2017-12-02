@@ -7,7 +7,7 @@ namespace Zitate.Helpers
     public class ZHelpersREST
     {
 
-        public static string myEmail = "";
+        public static string myEmail = "ich@vonfio.de";
         public string url = "";
 
         public ZHelpersREST(string view, string category, string searchValue = "0", string ordering = "best")

@@ -10,7 +10,7 @@ namespace Zitate.ViewModel
 
     public class ZViewModelAuthors : ZViewModel
     {
-        
+
         public ObservableCollection<ZModelAuthor> Items { get; set; }
         public ObservableCollection<ZModelAuthor> RandomAuthors { get; set; }
         public ObservableCollection<ZModelAuthor> PopularAuthors { get; set; }

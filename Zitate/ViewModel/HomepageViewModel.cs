@@ -46,34 +46,45 @@ namespace Zitate.ViewModel
         }
 
         private void doData(string JSON)
-        {
+        { 
             var random = JsonConvert.DeserializeObject<ZModelHomepage>(JSON).RandomQuotes;
-            foreach (var item in random)
-            { 
-                item.Text = HtmlRemoval.StripTagsRegex(item.Text);
-                RandomQuotes.Add(item);
-                break;
+            if(random != null) { 
+                foreach (var item in random)
+                { 
+                    item.Text = HtmlRemoval.StripTagsRegex(item.Text);
+                    RandomQuotes.Add(item);
+                    break;
+                }
             }
 
             var birthers = JsonConvert.DeserializeObject<ZModelHomepage>(JSON).Births;
-            foreach (var item in birthers)
+            if (birthers != null)
             {
+                foreach (var item in birthers)
+                {
                 item.imageSrc = ZModelAuthor.getImage(item.image);
                 Birthdays.Add(item);
+                }
             }
 
             var diers = JsonConvert.DeserializeObject<ZModelHomepage>(JSON).Deaths;
-            foreach (var item in diers)
+            if (diers != null)
             {
-                item.imageSrc = ZModelAuthor.getImage(item.image);
-                Deathdays.Add(item);
+                foreach (var item in diers)
+                {
+                    item.imageSrc = ZModelAuthor.getImage(item.image);
+                    Deathdays.Add(item);
+                }
             }
 
             var authors = JsonConvert.DeserializeObject<ZModelHomepage>(JSON).PopularAuthors;
-            foreach (var item in authors)
+            if (authors != null)
             {
+                foreach (var item in authors)
+                {
                 item.imageSrc = ZModelAuthor.getImage(item.image);
                 PopularAuthors.Add(item);
+                }
             }
         }
 

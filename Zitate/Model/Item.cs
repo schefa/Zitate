@@ -24,12 +24,24 @@ namespace Zitate.Model
         public double width { get; set; }
 
         public int created_by { get; set; }
-        public string username { get; set; }
+        
+        private string _userName;
+        public string username {
+            get {
+                return (author != null && author.username.Length > 0) ?  author.username : _userName;
+            }
+            set
+            {
+                _userName = value;
+            }
+        }
+        
+        public ZModelAuthor author { get; set; }
     }
 
     public class ZModelItems
     {
-        [JsonProperty("best")]
+        [JsonProperty("popular")]
         public List<ZModelItem> Popular { get; set; }
 
         [JsonProperty("random")]

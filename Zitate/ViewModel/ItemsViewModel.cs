@@ -65,18 +65,25 @@ namespace Zitate.ViewModel
         private void doItemsLandingPage(string jSONdata)
         {
             var random = JsonConvert.DeserializeObject<ZModelItems>(JSONdata).Random;
-            foreach (var item in random)
+            if(random != null)
             {
-                item.Text = HtmlRemoval.StripTagsRegex(item.Text);
-                RandomItems.Add(item);
+                foreach (var item in random)
+                {
+                    item.Text = HtmlRemoval.StripTagsRegex(item.Text);
+                    RandomItems.Add(item);
+                }
+            }
+            
+            var popular = JsonConvert.DeserializeObject<ZModelItems>(JSONdata).Popular;
+            if(popular != null)
+            {
+                foreach (var item in popular)
+                {
+                    item.Text = HtmlRemoval.StripTagsRegex(item.Text);
+                    PopularItems.Add(item);
+                }
             }
 
-            var popular = JsonConvert.DeserializeObject<ZModelItems>(JSONdata).Popular;
-            foreach (var item in popular)
-            {
-                item.Text = HtmlRemoval.StripTagsRegex(item.Text);
-                PopularItems.Add(item);
-            }
         }
     }
 }
