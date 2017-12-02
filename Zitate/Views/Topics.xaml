@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="Zitate.ZViewTopics"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Zitate"
+    xmlns:model="using:Zitate.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="cvs1" />
+        <CollectionViewSource x:Name="cvs2" />
+        <CollectionViewSource x:Name="cvs3" />
+    </Page.Resources>
+
+    <StackPanel Style="{StaticResource FrameContainer}">
+
+        <StackPanel Style="{StaticResource HubHeader}">
+            <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderStyle}" Padding="12,10,12,0"  />
+        </StackPanel>
+
+        <StackPanel x:Name="hub1">
+
+            <ListView Style="{StaticResource HubItemsPanelListView}" ItemContainerStyle="{StaticResource ItemsListViewItem}"
+                            ItemsSource="{Binding Source={StaticResource cvs1}}" 
+                            IsItemClickEnabled="True" ItemClick="goToTag">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource HubItemBox}">
+                            <TextBlock Text="{Binding name}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel x:Name="hub2">
+            <GridView  ItemContainerStyle="{StaticResource ItemsGridViewItem}"
+                            ItemsSource="{Binding Source={StaticResource cvs2}}" 
+                            IsItemClickEnabled="True" ItemClick="goToTag">
+
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource HubItemBox}">
+                            <TextBlock Text="{Binding name}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+
+            </GridView>
+        </StackPanel>
+
+        <StackPanel x:Name="hub3">
+
+            <VariableSizedWrapGrid>
+
+                <ListView ItemsSource="{Binding Source={StaticResource cvs3}}" IsItemClickEnabled="True" ItemClick="goToItem" 
+                        ItemContainerStyle="{StaticResource ItemsListViewItem}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Style="{StaticResource ItemsListContainer}">
+                                <TextBlock Text="{Binding Text}" Style="{StaticResource ItemListText}" />
+                                <TextBlock Text="{Binding username}"  Style="{StaticResource ItemListUsername}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </VariableSizedWrapGrid>
+
+        </StackPanel>
+
+    </StackPanel>
+
+</Page>

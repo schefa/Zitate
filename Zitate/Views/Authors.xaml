@@ -1,0 +1,85 @@
+﻿<Page
+    x:Class="Zitate.ZViewAuthors"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Zitate"
+    xmlns:model="using:Zitate.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="Standard150x150ItemTemplate">
+            <Grid HorizontalAlignment="Left" Width="150" Height="150">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="{Binding image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding username}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <Image Source="{Binding imageSrc}" />
+                    <TextBlock Text="{Binding username}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        
+        <CollectionViewSource x:Name="cvs1" />
+        <CollectionViewSource x:Name="cvs2" />
+        <CollectionViewSource x:Name="cvs3" />
+    </Page.Resources>
+
+
+    <Pivot x:Name="quotesTabs" Style="{StaticResource PivotStyle}" Title="Autoren">
+
+        <PivotItem x:Name="hub1" Header="Suchergebnisse">
+
+            <StackPanel Style="{StaticResource FrameContainer}">
+
+                <GridView ItemsSource="{Binding Source={StaticResource cvs1}}" IsItemClickEnabled="True" ItemClick="goToAuthor">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Style="{StaticResource HubAuthorBox}">
+                                <Image Source="{Binding imageSrc}" Width="100" Height="100" Stretch="UniformToFill" Margin="5"/>
+                                <TextBlock Text="{Binding username}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+
+            </StackPanel>
+        </PivotItem>
+
+        <PivotItem x:Name="hub2" Header="Populär">
+
+        <StackPanel Style="{StaticResource FrameContainer}">
+            <GridView ItemsSource="{Binding Source={StaticResource cvs2}}" IsItemClickEnabled="True" ItemClick="goToAuthor">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource HubAuthorBox}">
+                            <Image Source="{Binding imageSrc}" Width="100" Height="Auto" Stretch="UniformToFill" Margin="5"/>
+                            <TextBlock Text="{Binding username}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </StackPanel>
+    </PivotItem>
+
+        <PivotItem x:Name="hub3" Header="Entdecken">
+
+        <StackPanel Style="{StaticResource FrameContainer}">
+            <GridView ItemsSource="{Binding Source={StaticResource cvs3}}" 
+                            IsItemClickEnabled="True" ItemClick="goToAuthor">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource HubAuthorBox}">
+                            <Image Source="{Binding imageSrc}" Width="100" Height="100" Stretch="UniformToFill" Margin="5"/>
+                            <TextBlock Text="{Binding username}"  HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </StackPanel>
+
+    </PivotItem>
+    </Pivot>  
+    
+</Page>

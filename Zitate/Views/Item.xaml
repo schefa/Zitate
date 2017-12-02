@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="Zitate.ZViewItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Zitate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style x:Key="Link" TargetType="Button">
+            <Setter Property="Foreground" Value="RoyalBlue"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Style="{StaticResource FrameContainer}">
+        <Grid x:Name="itemBox">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" MinHeight="50" />
+                <RowDefinition Height="90*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="navigation" Grid.Row="0" VerticalAlignment="Center" MaxWidth="300">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="prevContainer" Grid.Column="0" Height="32" Width="50" HorizontalAlignment="Right">
+                        <Button Click="PrevClick">
+                            <SymbolIcon Symbol="Previous" />
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Height="32"  HorizontalAlignment="Center">
+                        <Button x:Name="merkenButton" Click="Merken_Click" Background="SteelBlue">
+                            <TextBlock x:Name="merkenButtonText" Text="Merken" />
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel x:Name="nextContainer" Grid.Column="2" Height="32" Width="50" HorizontalAlignment="Left">
+                        <Button Click="NextClick">
+                            <SymbolIcon Symbol="Next" />
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+            
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="10,20">
+                <StackPanel Background="White" Padding="20" >
+                    <TextBlock FontSize="35" TextWrapping="WrapWholeWords" Text="{Binding Text}" Margin="0,0,0,30" />
+                    <Button x:Name="authorLink" Style="{StaticResource Link}" Click="goToAuthor" Content="{Binding username}" />
+                </StackPanel>
+                <StackPanel Margin="10,0" Padding="15,5" Background="#FFE8E8E8">
+                    <TextBlock TextWrapping="Wrap" Foreground="Gray" Text="{Binding nachweis}" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </StackPanel>
+</Page>

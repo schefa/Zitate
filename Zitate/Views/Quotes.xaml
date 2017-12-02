@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="Zitate.ZViewQuotes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Zitate"
+    xmlns:model="using:Zitate.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="cvs1" />
+        <CollectionViewSource x:Name="cvs2" />
+        <CollectionViewSource x:Name="cvs3" />
+    </Page.Resources>
+
+    <Pivot x:Name="quotesTabs" Style="{StaticResource PivotStyle}" >
+
+        <PivotItem x:Name="hub1" Header="Suchergebnisse"> 
+                    
+            <ListView ItemsSource="{Binding Source={StaticResource cvs1}}" IsItemClickEnabled="True" ItemClick="goToItem"
+                            ItemContainerStyle="{StaticResource ItemsListViewItem}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource ItemsListContainer}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource ItemListText}" />
+                            <TextBlock Text="{Binding username}"  Style="{StaticResource ItemListUsername}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+ 
+        </PivotItem>
+
+        <PivotItem x:Name="hub2" Header="Beliebte Zitate" >
+
+            <ListView ItemsSource="{Binding Source={StaticResource cvs2}}" IsItemClickEnabled="True" ItemClick="goToItem" 
+                        ItemContainerStyle="{StaticResource ItemsListViewItem}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource ItemsListContainer}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource ItemListText}" />
+                            <TextBlock Text="{Binding username}"  Style="{StaticResource ItemListUsername}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </PivotItem>
+
+        <PivotItem x:Name="hub3" Header="Zufällige Zitate">
+            <ListView ItemsSource="{Binding Source={StaticResource cvs3}}" IsItemClickEnabled="True" ItemClick="goToItem" 
+                ItemContainerStyle="{StaticResource ItemsListViewItem}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource ItemsListContainer}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource ItemListText}" />
+                            <TextBlock Text="{Binding username}"  Style="{StaticResource ItemListUsername}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </PivotItem>
+
+    </Pivot>
+    
+</Page>

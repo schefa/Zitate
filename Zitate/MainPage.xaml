@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="Zitate.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Zitate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </Page.Resources>
+
+    <RelativePanel>
+
+        <Grid x:Name="topbar" 
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  
+                        Margin="0" Height="60"  Padding="0,0,10,0" Background="#FFEEEEEE">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" 
+                        Width="60" Height="80" Foreground="White" Background="Black" Click="HamburgerRadioButton_Click"/>
+
+            <StackPanel Grid.Column="1" >
+                <Border BorderBrush="Black" Background="White" Margin="10" MaxWidth="300" HorizontalAlignment="Left">
+                    <Grid Background="White" BorderBrush="Black" Padding="5,5,10,5">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Margin="0"  x:Name="searchBox" TextWrapping="Wrap" PlaceholderText="Suche" 
+                                VerticalAlignment="Center" Background="White" SelectionHighlightColor="White" MinWidth="100"
+                                 Foreground="{x:Null}" BorderBrush="{x:Null}" KeyDown="searchBox_KeyDown" />
+                        <ComboBox Grid.Column="1" x:Name="searchCombobox" Margin="10,0"  ItemsSource="{Binding}" Foreground="Black" BorderBrush="{x:Null}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Column="2" x:Name="searchButton" Click="searchButton_Click" Width="42" Background="#00000000">
+                            <SymbolIcon Symbol="Find"></SymbolIcon>
+                        </Button>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            
+            <Grid Grid.Column="2" x:Name="additionalNav" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" x:Name="backButton"  Click="backButton_Click" Background="Transparent"> 
+                    <SymbolIcon Symbol="Back" />
+                </Button>
+
+                <Button Grid.Column="1" x:Name="refreshButton" Click="refresh_click" Background="Transparent">
+                    <SymbolIcon Symbol="Refresh" />
+                </Button>
+                
+            </Grid>
+
+        </Grid>
+
+        <SplitView  x:Name="SplitView" RelativePanel.Below="topbar"
+                    RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                    DisplayMode="CompactOverlay" IsPaneOpen="False" 
+                    CompactPaneLength="60" OpenPaneLength="250" >
+
+            <SplitView.Pane>
+                <StackPanel Background="Black">
+
+                    <ListBox x:Name="scenarioListBox" VerticalAlignment="Top"
+                             SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="{Binding Symbol}" Foreground="White" Width="60" Height="60" />
+                                    <TextBlock Text="{Binding Title}" Foreground="White" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </StackPanel>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <RelativePanel Background="LightGray">
+
+                    <StackPanel RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True" 
+                                RelativePanel.AlignTopWithPanel="True"
+                                x:Name="statusToolbar" Height="50" VerticalAlignment="Center">
+
+                        <TextBlock x:Name="StatusBlock" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
+                        <ProgressBar x:Name="progressBar" IsIndeterminate="True" Height="20" />
+                    </StackPanel>
+
+                    <ScrollViewer RelativePanel.AlignTopWith="statusToolbar" 
+                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                        <Frame x:Name="ScenarioFrame" ScrollViewer.VerticalScrollBarVisibility="Auto"  />
+                    </ScrollViewer>
+
+                </RelativePanel>
+            </SplitView.Content>
+
+        </SplitView>
+
+    </RelativePanel>
+
+</Page>
