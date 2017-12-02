@@ -7,12 +7,12 @@ namespace Zitate.Helpers
     public class ZHelpersREST
     {
 
-        public static string key = "M0bileComputing2016";
+        public static string myEmail = "";
         public string url = "";
 
         public ZHelpersREST(string view, string category, string searchValue = "0", string ordering = "best")
         {
-            url = "http://zitate.vonfio.de/" + view + "/" + category + "/" + HtmlRemoval.StripTagsRegex( searchValue ) + "?k=" + key + "&o=" + ordering;
+            url = "http://localhost/denkschatz/index.php/api/" + view + "/" + category + "/" + HtmlRemoval.StripTagsRegex( searchValue ) + "?c=" + myEmail + "&o=" + ordering;
         }
 
         public async Task<string> getResponse()

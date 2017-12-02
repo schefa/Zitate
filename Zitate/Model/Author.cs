@@ -28,7 +28,7 @@ namespace Zitate.Model
             if (src == null || src.Length <= 1)
                 return new BitmapImage(new Uri("http://www.denkschatz.de/images/autoren/user.png"));
             else
-                return new BitmapImage(new Uri("http://www.denkschatz.de/images/autoren/original/" + src));
+                return new BitmapImage(new Uri("http://www.denkschatz.de/images/autoren/300/" + src));
         }
 
     }
