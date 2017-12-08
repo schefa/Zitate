@@ -5,15 +5,33 @@ namespace Zitate.Helpers
 {
     public class ZNavigation
     {
-        private static Dictionary<string, ZNavigationItem> navigationItems = new Dictionary<string, ZNavigationItem> ()
-                {
-                    {  "zviewhomepage" , new ZNavigationItem() { Title = "Start", Symbol = "Home", ClassType = typeof(ZViewHomepage) }},
-                    {  "zviewauthors" , new ZNavigationItem() { Title = "Autoren", Symbol = "People", ClassType = typeof(ZViewAuthors) }},
-                    {  "zviewquotes" , new ZNavigationItem() { Title = "Zitate", Symbol = "Comment", ClassType = typeof(ZViewQuotes) }},
-                    {  "zviewtopics" ,new ZNavigationItem() { Title = "Themen", Symbol = "Tag", ClassType = typeof(ZViewTopics) }},
-                    {  "zviewcollection" ,new ZNavigationItem() { Title = "Sammlung", Symbol = "OutlineStar", ClassType = typeof(ZViewCollection) }}
-                };
 
+        /// <summary>
+        /// Menu Items
+        /// </summary>
+        private static Dictionary<string, ZNavigationItem> navigationItems = new Dictionary<string, ZNavigationItem> ()
+        {
+            {  "zviewhomepage" , new ZNavigationItem() { Title = "Start", Symbol = "Home", ClassType = typeof(ZViewHomepage) }},
+            {  "zviewauthors" , new ZNavigationItem() { Title = "Autoren", Symbol = "People", ClassType = typeof(ZViewAuthors) }},
+            {  "zviewquotes" , new ZNavigationItem() { Title = "Zitate", Symbol = "Comment", ClassType = typeof(ZViewQuotes) }},
+            {  "zviewtopics" ,new ZNavigationItem() { Title = "Themen", Symbol = "Tag", ClassType = typeof(ZViewTopics) }},
+            {  "zviewcollection" ,new ZNavigationItem() { Title = "Sammlung", Symbol = "OutlineStar", ClassType = typeof(ZViewCollection) }},
+            {  "zviewsettings" ,new ZNavigationItem() { Title = "Einstellungen", Symbol = "Setting", ClassType = typeof(ZViewSettings) }}
+        };
+
+        /// <summary>
+        /// Search Combobox
+        /// </summary>
+        private static List<ZNavigationItem> navigationCombobox = new List<ZNavigationItem>
+            {
+                new ZNavigationItem() { Title = "Zitate", ClassType = typeof(ZViewQuotes) },
+                new ZNavigationItem() { Title = "Autoren", ClassType = typeof(ZViewAuthors) },
+                new ZNavigationItem() { Title = "Themen", ClassType = typeof(ZViewTopics) }
+            };
+
+        /// <summary>
+        /// Menu Items Getter and Setter
+        /// </summary>
         public static Dictionary<string, ZNavigationItem> NavigationItems
         {
             get
@@ -26,15 +44,10 @@ namespace Zitate.Helpers
                 navigationItems = value;
             }
         }
-
-
-        private static List<ZNavigationItem> navigationCombobox = new List<ZNavigationItem>
-            {
-                new ZNavigationItem() { Title = "Zitate", ClassType = typeof(ZViewQuotes) },
-                new ZNavigationItem() { Title = "Autoren", ClassType = typeof(ZViewAuthors) },
-                new ZNavigationItem() { Title = "Themen", ClassType = typeof(ZViewTopics) }
-            };
-
+         
+        /// <summary>
+        /// Seach Combobox Getter and Setter
+        /// </summary>
         public static List<ZNavigationItem> NavigationCombobox
         {
             get

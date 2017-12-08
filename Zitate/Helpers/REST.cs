@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace Zitate.Helpers
 {
     public class ZHelpersREST
     {
 
-        public static string myEmail = "ich@vonfio.de";
+        private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+        public static string myEmail;
         public string url = "";
 
         public ZHelpersREST(string view, string category, string searchValue = "0", string ordering = "best")
         {
-            url = "http://localhost/denkschatz/index.php/api/" + view + "/" + category + "/" + HtmlRemoval.StripTagsRegex( searchValue ) + "?c=" + myEmail + "&o=" + ordering;
+            if (localSettings.Values["email"] != null)
+                myEmail = localSettings.Values["email"].ToString();
+            
+            url = "http://www.denkschatz.de/api/" + view + "/" + category + "/" + HtmlRemoval.StripTagsRegex( searchValue ) + "?c=" + myEmail + "&o=" + ordering;
         }
 
         public async Task<string> getResponse()
